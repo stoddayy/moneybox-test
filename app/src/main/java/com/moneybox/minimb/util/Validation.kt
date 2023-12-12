@@ -15,4 +15,4 @@ private val emailRegex = Pattern.compile(
 fun String.isValidEmail() = emailRegex.matcher(this).matches()
 
 //Password strength rules currently unknown
-fun String.isValidPassword() = true
+fun String.isValidPassword() = length > 3
