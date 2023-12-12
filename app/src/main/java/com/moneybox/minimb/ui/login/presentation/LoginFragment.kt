@@ -1,4 +1,4 @@
-package com.moneybox.minimb.ui.login
+package com.moneybox.minimb.ui.login.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater

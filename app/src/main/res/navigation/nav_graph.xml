@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.moneybox.minimb.ui.login.LoginFragment">
+        android:name="com.moneybox.minimb.ui.login.presentation.LoginFragment">
 
 
     </fragment>
