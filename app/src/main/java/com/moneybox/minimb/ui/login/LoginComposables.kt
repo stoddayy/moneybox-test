@@ -33,9 +33,9 @@ fun LoginScreen(
     MoneyBoxTestTheme {
         LoginContent(
             state = state,
-            onEmailUpdated = {},
-            onPasswordUpdated = {},
-            onLoginClicked = {}
+            onEmailUpdated = viewModel::onEmailUpdated,
+            onPasswordUpdated = viewModel::onPasswordUpdated,
+            onLoginClicked = viewModel::onLoginClicked
         )
     }
 }

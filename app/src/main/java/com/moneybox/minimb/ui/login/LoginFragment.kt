@@ -19,7 +19,7 @@ class LoginFragment : Fragment() {
 
         composeView.setContent {
             LoginScreen(
-
+                viewModel = viewModel
             )
         }
 
