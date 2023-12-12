@@ -29,6 +29,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.jetbrains.annotations.VisibleForTesting
 
 class LoginViewModel(
     private val interactor: LoginInteractor
@@ -103,7 +104,7 @@ class LoginViewModel(
 }
 
 data class LoginUiState(
-    private val requestStatus: RequestStatus,
+    @VisibleForTesting val requestStatus: RequestStatus,
     val email: String,
     val password: String,
     val emailError: Boolean,
