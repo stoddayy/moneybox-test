@@ -16,7 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.moneybox.minimb.R
-import com.moneybox.minimb.ui.common.CtaState
 import com.moneybox.minimb.ui.common.MBButton
 import com.moneybox.minimb.ui.common.MBTextField
 import com.moneybox.minimb.ui.common.ResourceString
@@ -28,7 +27,6 @@ import com.moneybox.minimb.ui.theme.MoneyBoxTestTheme
 fun LoginScreen(
     viewModel: LoginViewModel
 ) {
-
     val state by viewModel.uiState.collectAsState()
 
     MoneyBoxTestTheme {

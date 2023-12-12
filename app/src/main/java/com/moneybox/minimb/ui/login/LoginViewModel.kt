@@ -51,10 +51,8 @@ data class LoginUiState(
     val email: String,
     val password: String
 ) {
-
     val ctaState = if (requestStatus.isRequesting()) CtaState.Loading
     else CtaState.Enabled(ResourceString(R.string.log_in))
-
 }
 
 val loginViewModelFactory: ViewModelProvider.Factory = viewModelFactory {
