@@ -1,13 +1,16 @@
 package com.moneybox.minimb.ui.login.presentation
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.moneybox.minimb.R
 import com.moneybox.minimb.data.networking.LocalAuthTokenRepository
+import com.moneybox.minimb.data.networking.MoneyBoxApiService
 import com.moneybox.minimb.data.networking.RequestStatus
 import com.moneybox.minimb.data.networking.isRequesting
+import com.moneybox.minimb.extensions.dataStore
 import com.moneybox.minimb.ui.common.CtaState
 import com.moneybox.minimb.ui.common.ResourceString
 import com.moneybox.minimb.ui.login.data.RemoteLoginRepository
@@ -59,12 +62,16 @@ data class LoginUiState(
     else CtaState.Enabled(ResourceString(R.string.log_in))
 }
 
-val loginViewModelFactory: ViewModelProvider.Factory = viewModelFactory {
+fun loginViewModelFactory(context: Context): ViewModelProvider.Factory = viewModelFactory {
     initializer {
         LoginViewModel(
             interactor = RemoteLoginInteractor(
-                loginRepository = RemoteLoginRepository(),
-                authTokenRepository = LocalAuthTokenRepository()
+                loginRepository = RemoteLoginRepository(
+                    api = MoneyBoxApiService.instance
+                ),
+                authTokenRepository = LocalAuthTokenRepository(
+                    dataStore = context.dataStore
+                )
             )
         )
     }

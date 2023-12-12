@@ -11,7 +11,7 @@ import com.moneybox.minimb.extensions.createRootComposeView
 class LoginFragment : Fragment() {
 
     private val viewModel by viewModels<LoginViewModel> {
-        loginViewModelFactory
+        loginViewModelFactory(requireContext())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

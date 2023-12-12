@@ -1,6 +1,7 @@
 package com.moneybox.minimb.ui.login.domain
 
 import com.moneybox.minimb.data.networking.AuthTokenRepository
+import com.moneybox.minimb.extensions.doOnSuccess
 import com.moneybox.minimb.ui.login.data.LoginRepository
 
 fun interface LoginInteractor {
@@ -12,7 +13,10 @@ class RemoteLoginInteractor(
     private val authTokenRepository: AuthTokenRepository
 ) : LoginInteractor{
     override suspend fun loginWithEmailAndPassword(email: String, password: String) {
-        TODO("Not yet implemented")
+        loginRepository.login(email, password)
+            .doOnSuccess {
+                authTokenRepository.saveAuthToken(it.session.bearerToken)
+            }
     }
 }
 
