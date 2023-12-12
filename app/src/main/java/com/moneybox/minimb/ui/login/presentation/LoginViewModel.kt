@@ -5,11 +5,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.moneybox.minimb.R
+import com.moneybox.minimb.data.networking.LocalAuthTokenRepository
 import com.moneybox.minimb.data.networking.RequestStatus
 import com.moneybox.minimb.data.networking.isRequesting
 import com.moneybox.minimb.ui.common.CtaState
 import com.moneybox.minimb.ui.common.ResourceString
+import com.moneybox.minimb.ui.login.data.RemoteLoginRepository
 import com.moneybox.minimb.ui.login.domain.LoginInteractor
+import com.moneybox.minimb.ui.login.domain.RemoteLoginInteractor
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -59,7 +62,10 @@ data class LoginUiState(
 val loginViewModelFactory: ViewModelProvider.Factory = viewModelFactory {
     initializer {
         LoginViewModel(
-
+            interactor = RemoteLoginInteractor(
+                loginRepository = RemoteLoginRepository(),
+                authTokenRepository = LocalAuthTokenRepository()
+            )
         )
     }
 
