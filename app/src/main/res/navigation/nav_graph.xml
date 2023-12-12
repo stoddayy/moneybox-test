@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/loginFragment"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.moneybox.minimb.ui.login.presentation.LoginFragment">
 
+        <action
+            android:id="@+id/toPlanValue"
+            app:destination="@id/planValueFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/planValueFragment"
+        android:name="com.moneybox.minimb.ui.planvalue.PlanValueFragment" />
 
 
 </navigation>

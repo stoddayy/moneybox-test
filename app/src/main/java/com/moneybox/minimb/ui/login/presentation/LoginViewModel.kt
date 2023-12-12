@@ -23,6 +23,8 @@ import com.moneybox.minimb.ui.login.domain.LoginInteractor
 import com.moneybox.minimb.ui.login.domain.RemoteLoginInteractor
 import com.moneybox.minimb.util.isValidEmail
 import com.moneybox.minimb.util.isValidPassword
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -42,6 +44,9 @@ class LoginViewModel(
 
     private val _uiState = MutableStateFlow(initialState)
     val uiState = _uiState.asStateFlow()
+
+    private val _navigation = Channel<LoginNavEvent>(Channel.CONFLATED)
+    val navigation = _navigation as ReceiveChannel<LoginNavEvent>
 
     fun onEmailUpdated(email: String) {
         _uiState.update {
@@ -72,6 +77,7 @@ class LoginViewModel(
                 interactor.loginWithEmailAndPassword(state.email, state.password)
                     .doOnSuccess {
                         _uiState.update { it.toSuccessState() }
+                        _navigation.trySend(LoginNavEvent.NextScreen)
                     }
                     .doOnFailure { _uiState.update { it.toFailureState() } }
             }
@@ -116,6 +122,10 @@ data class LoginUiState(
 
     val ctaState = if (requestStatus.isRequesting()) CtaState.Loading
     else CtaState.Enabled(ResourceString(R.string.log_in))
+}
+
+sealed interface LoginNavEvent {
+    object NextScreen : LoginNavEvent
 }
 
 fun loginViewModelFactory(context: Context): ViewModelProvider.Factory = viewModelFactory {

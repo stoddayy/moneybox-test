@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.moneybox.minimb.extensions.collectSafely
 import com.moneybox.minimb.extensions.createRootComposeView
+import kotlinx.coroutines.flow.receiveAsFlow
 
 class LoginFragment : Fragment() {
 
@@ -26,4 +29,11 @@ class LoginFragment : Fragment() {
         return composeView
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.navigation.receiveAsFlow().collectSafely(viewLifecycleOwner) { event ->
+            when (event) {
+                LoginNavEvent.NextScreen -> findNavController().navigate(LoginFragmentDirections.toPlanValue())
+            }
+        }
+    }
 }
