@@ -10,11 +10,13 @@ import com.moneybox.minimb.R
 import com.moneybox.minimb.data.networking.LocalAuthTokenRepository
 import com.moneybox.minimb.data.networking.MoneyBoxApiService
 import com.moneybox.minimb.data.networking.RequestStatus
+import com.moneybox.minimb.data.networking.isFailure
 import com.moneybox.minimb.data.networking.isRequesting
 import com.moneybox.minimb.extensions.dataStore
 import com.moneybox.minimb.extensions.doOnFailure
 import com.moneybox.minimb.extensions.doOnSuccess
 import com.moneybox.minimb.ui.common.CtaState
+import com.moneybox.minimb.ui.common.EmptyString
 import com.moneybox.minimb.ui.common.ResourceString
 import com.moneybox.minimb.ui.login.data.RemoteLoginRepository
 import com.moneybox.minimb.ui.login.domain.LoginInteractor
@@ -77,8 +79,8 @@ class LoginViewModel(
     }
 
     private fun LoginUiState.validateEmailAndPassword() = copy(
-        emailError = email.isValidEmail(),
-        passwordError = password.isValidPassword()
+        emailError = !email.isValidEmail(),
+        passwordError = !password.isValidPassword()
     )
 
     private fun LoginUiState.toLoadingState() = copy(
@@ -101,6 +103,17 @@ data class LoginUiState(
     val emailError: Boolean,
     val passwordError: Boolean
 ) {
+
+    val hasError = emailError || passwordError || requestStatus.isFailure()
+
+    val errorMessage = when {
+        emailError && passwordError -> ResourceString(R.string.email_and_password_error)
+        emailError -> ResourceString(R.string.email_error)
+        passwordError -> ResourceString(R.string.password_error)
+        requestStatus.isFailure() -> ResourceString(R.string.problem_logging_in)
+        else -> EmptyString
+    }
+
     val ctaState = if (requestStatus.isRequesting()) CtaState.Loading
     else CtaState.Enabled(ResourceString(R.string.log_in))
 }
@@ -118,5 +131,4 @@ fun loginViewModelFactory(context: Context): ViewModelProvider.Factory = viewMod
             )
         )
     }
-
 }

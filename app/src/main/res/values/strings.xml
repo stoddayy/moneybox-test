@@ -3,4 +3,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="log_in">Log In</string>
+    <string name="email_and_password_error">That email address and password don\'t look right, please try again.</string>
+    <string name="email_error">That email address doesn\'t look right, please try again.</string>
+    <string name="password_error">That password doesn\'t look right, please try again.</string>
+    <string name="problem_logging_in">There was a problem logging you in, please try again.</string>
 </resources>

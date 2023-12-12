@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,6 +20,7 @@ import com.moneybox.minimb.ui.common.MBTextField
 import com.moneybox.minimb.ui.common.ResourceString
 import com.moneybox.minimb.ui.common.emailKeyboardOptions
 import com.moneybox.minimb.ui.common.passwordKeyboardOptions
+import com.moneybox.minimb.ui.common.resolve
 import com.moneybox.minimb.ui.theme.MoneyBoxTestTheme
 
 @Composable
@@ -60,7 +62,8 @@ fun LoginContent(
             text = state.email,
             onTextValueUpdated = onEmailUpdated,
             labelText = ResourceString(R.string.email),
-            keyboardOptions = emailKeyboardOptions
+            keyboardOptions = emailKeyboardOptions,
+            isError = state.emailError
         )
 
         MBTextField(
@@ -69,10 +72,18 @@ fun LoginContent(
             onTextValueUpdated = onPasswordUpdated,
             labelText = ResourceString(R.string.password),
             keyboardOptions = passwordKeyboardOptions,
-            visualTransformation = PasswordVisualTransformation(mask = '*')
+            visualTransformation = PasswordVisualTransformation(mask = '*'),
+            isError = state.passwordError
         )
 
         Spacer(modifier = Modifier.weight(1f))
+
+        if (state.hasError) {
+            Text(
+                text = state.errorMessage.resolve(),
+                modifier = Modifier.padding(16.dp)
+            )
+        }
 
         MBButton(
             modifier = Modifier.padding(16.dp),

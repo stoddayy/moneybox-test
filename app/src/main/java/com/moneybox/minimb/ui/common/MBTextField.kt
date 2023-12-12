@@ -20,7 +20,8 @@ fun MBTextField(
     onTextValueUpdated: (String) -> Unit,
     labelText: TextProperty,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    isError: Boolean = false
 ) {
     TextField(
         modifier = modifier.fillMaxWidth(),
@@ -34,7 +35,8 @@ fun MBTextField(
             unfocusedIndicatorColor = Aqua
         ),
         keyboardOptions = keyboardOptions,
-        visualTransformation = visualTransformation
+        visualTransformation = visualTransformation,
+        isError = isError
     )
 }
 
