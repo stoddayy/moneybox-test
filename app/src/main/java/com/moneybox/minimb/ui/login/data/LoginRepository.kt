@@ -7,7 +7,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-interface LoginRepository {
+fun interface LoginRepository {
     suspend fun login(email: String, password: String): Result<LoginResponse>
 }
 
