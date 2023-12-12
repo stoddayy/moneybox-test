@@ -1,9 +1,14 @@
 package com.moneybox.minimb.ui.login.presentation
 
+import com.moneybox.minimb.util.CoroutineTestRule
 import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.Test
 
 class LoginViewModelTest {
+
+    @get:Rule
+    val rule = CoroutineTestRule()
 
     @Test
     fun `initial state is correct`() {
