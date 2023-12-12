@@ -1,6 +1,9 @@
 package com.moneybox.minimb.ui.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.moneybox.minimb.R
 import com.moneybox.minimb.data.networking.RequestStatus
 import com.moneybox.minimb.data.networking.isRequesting
@@ -20,16 +23,20 @@ class LoginViewModel(
     private val _uiState = MutableStateFlow(initialState)
     val uiState = _uiState.asStateFlow()
 
-
-
-
 }
 
 data class LoginUiState(
     private val requestStatus: RequestStatus
 ) {
 
-    val ctaState = if(requestStatus.isRequesting()) CtaState.Loading
+    val ctaState = if (requestStatus.isRequesting()) CtaState.Loading
     else CtaState.Enabled(ResourceString(R.string.log_in))
+
+}
+
+val loginViewModelFactory: ViewModelProvider.Factory = viewModelFactory {
+    initializer {
+        LoginViewModel()
+    }
 
 }

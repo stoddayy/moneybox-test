@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -22,18 +24,28 @@ import com.moneybox.minimb.ui.common.passwordKeyboardOptions
 import com.moneybox.minimb.ui.theme.MoneyBoxTestTheme
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    viewModel: LoginViewModel
+) {
+
+    val state by viewModel.uiState.collectAsState()
 
     MoneyBoxTestTheme {
         LoginContent(
-
+            state = state,
+            onEmailUpdated = {},
+            onPasswordUpdated = {},
+            onLoginClicked = {}
         )
     }
 }
 
 @Composable
 fun LoginContent(
-
+    state: LoginUiState,
+    onEmailUpdated: (String) -> Unit,
+    onPasswordUpdated: (String) -> Unit,
+    onLoginClicked: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -49,7 +61,7 @@ fun LoginContent(
         MBTextField(
             modifier = Modifier.padding(top = 48.dp, start = 16.dp, end = 16.dp),
             text = "",
-            onTextValueUpdated = {},
+            onTextValueUpdated = onEmailUpdated,
             labelText = ResourceString(R.string.email),
             keyboardOptions = emailKeyboardOptions
         )
@@ -57,7 +69,7 @@ fun LoginContent(
         MBTextField(
             modifier = Modifier.padding(16.dp),
             text = "",
-            onTextValueUpdated = {},
+            onTextValueUpdated = onPasswordUpdated,
             labelText = ResourceString(R.string.password),
             keyboardOptions = passwordKeyboardOptions
         )
@@ -66,8 +78,8 @@ fun LoginContent(
 
         MBButton(
             modifier = Modifier.padding(16.dp),
-            ctaState = CtaState.Enabled(ResourceString(R.string.password)),
-            onClick = {}
+            ctaState = state.ctaState,
+            onClick = onLoginClicked
         )
     }
 }
