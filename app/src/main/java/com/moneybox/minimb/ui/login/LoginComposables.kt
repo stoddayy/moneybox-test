@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.moneybox.minimb.R
 import com.moneybox.minimb.ui.common.CtaState
@@ -60,7 +61,7 @@ fun LoginContent(
 
         MBTextField(
             modifier = Modifier.padding(top = 48.dp, start = 16.dp, end = 16.dp),
-            text = "",
+            text = state.email,
             onTextValueUpdated = onEmailUpdated,
             labelText = ResourceString(R.string.email),
             keyboardOptions = emailKeyboardOptions
@@ -68,10 +69,11 @@ fun LoginContent(
 
         MBTextField(
             modifier = Modifier.padding(16.dp),
-            text = "",
+            text = state.password,
             onTextValueUpdated = onPasswordUpdated,
             labelText = ResourceString(R.string.password),
-            keyboardOptions = passwordKeyboardOptions
+            keyboardOptions = passwordKeyboardOptions,
+            visualTransformation = PasswordVisualTransformation(mask = '*')
         )
 
         Spacer(modifier = Modifier.weight(1f))

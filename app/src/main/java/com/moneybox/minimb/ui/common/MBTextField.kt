@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import com.moneybox.minimb.ui.theme.Aqua
 
 @Composable
@@ -18,7 +19,8 @@ fun MBTextField(
     text: String,
     onTextValueUpdated: (String) -> Unit,
     labelText: TextProperty,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     TextField(
         modifier = modifier.fillMaxWidth(),
@@ -31,7 +33,8 @@ fun MBTextField(
             focusedIndicatorColor = Aqua,
             unfocusedIndicatorColor = Aqua
         ),
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
+        visualTransformation = visualTransformation
     )
 }
 
