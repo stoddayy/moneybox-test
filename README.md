@@ -11,6 +11,7 @@ Known improvements:
 - Add an auth token interceptor to the NetworkingClient so we can auth the users requests when we have a token, without having to pass it directly to the API call
 - Use a DI framework such as Hilt or Koin, I opted against using a framework given the app was so small, but using SOLID principles within this codebase will mean that adding a framework in future will be really easy should we decide to add more to the task
 - Add some more validation around the password rules 
+- UI improvements
 
 
 ## The Brief…

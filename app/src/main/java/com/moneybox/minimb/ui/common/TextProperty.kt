@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import kotlinx.parcelize.Parcelize
 
 interface TextProperty {
     fun resolve(context: Context): CharSequence
