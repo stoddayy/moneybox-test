@@ -7,4 +7,7 @@
     <string name="email_error">That email address doesn\'t look right, please try again.</string>
     <string name="password_error">That password doesn\'t look right, please try again.</string>
     <string name="problem_logging_in">There was a problem logging you in, please try again.</string>
+    <string name="total_plan_value">Total Plan Value\n</string>
+    <string name="retry">Retry</string>
+    <string name="plan_value_error">There was a problem fetching your plan value, please try again.\n</string>
 </resources>

@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
+import java.util.concurrent.TimeUnit
 
 object NetworkingClient {
     val retrofit: Retrofit by lazy {
@@ -17,6 +18,9 @@ object NetworkingClient {
     private fun createClient(): OkHttpClient {
         return OkHttpClient
             .Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(NoAuthenticationInterceptor())
             .build()
     }

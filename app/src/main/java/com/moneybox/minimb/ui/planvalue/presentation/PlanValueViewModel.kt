@@ -47,7 +47,9 @@ class PlanValueViewModel(
                         it.toSuccessState(planValue.planValue)
                     }
                 }
-                .doOnFailure { _uiState.update { it.toFailureState() } }
+                .doOnFailure {
+                    _uiState.update { it.toFailureState() }
+                }
         }
     }
 

@@ -2,10 +2,10 @@ package com.moneybox.minimb.ui.planvalue.domain
 
 import com.moneybox.minimb.data.models.products.AllProductsResponse
 import com.moneybox.minimb.data.networking.AuthTokenRepository
+import com.moneybox.minimb.extensions.formatAsCurrency
 import com.moneybox.minimb.ui.common.RawString
 import com.moneybox.minimb.ui.planvalue.data.PlanValueRepository
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 
 fun interface PlanValueInteractor {
     suspend fun retrieveUiPlanValue(): Result<UiPlanValue>
@@ -23,5 +23,5 @@ class RemotePlanValueInteractor(
 }
 
 private fun AllProductsResponse.toUiPlanValue() = UiPlanValue(
-    planValue = RawString(totalPlanValue.toString())
+    planValue = RawString(totalPlanValue.formatAsCurrency())
 )
