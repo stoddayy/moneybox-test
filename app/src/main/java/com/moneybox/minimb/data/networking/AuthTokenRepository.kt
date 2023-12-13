@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 interface AuthTokenRepository {
+    val authToken: Flow<String?>
     suspend fun saveAuthToken(token: String)
-    suspend fun authToken(): Flow<String?>
 }
 
 class LocalAuthTokenRepository(
@@ -17,12 +17,12 @@ class LocalAuthTokenRepository(
 ) : AuthTokenRepository {
     private val authTokenKey = stringPreferencesKey("authTokenKey")
 
+    override val authToken: Flow<String?> = dataStore.data
+        .map { it[authTokenKey] }
+
     override suspend fun saveAuthToken(token: String) {
         dataStore.edit { prefs ->
             prefs[authTokenKey] = token
         }
     }
-
-    override suspend fun authToken() = dataStore.data
-        .map { it[authTokenKey] }
 }

@@ -32,7 +32,7 @@ class LoginInteractorTest {
 
         interactor.loginWithEmailAndPassword("email", "password")
 
-        val actual = repo.authToken().first()
+        val actual = repo.authToken.first()
 
         assertNull(actual)
     }
@@ -48,7 +48,7 @@ class LoginInteractorTest {
 
         interactor.loginWithEmailAndPassword("email", "password")
 
-        val actual = repo.authToken().first()
+        val actual = repo.authToken.first()
 
         assertEquals(aLoginResponse.session.bearerToken, actual)
     }
