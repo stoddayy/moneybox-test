@@ -13,6 +13,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -61,7 +63,9 @@ fun LoginContent(
         )
 
         MBTextField(
-            modifier = Modifier.padding(top = 48.dp, start = 16.dp, end = 16.dp),
+            modifier = Modifier
+                .semantics { contentDescription = "Email Input" }
+                .padding(top = 48.dp, start = 16.dp, end = 16.dp),
             text = state.email,
             onTextValueUpdated = onEmailUpdated,
             labelText = ResourceString(R.string.email),
@@ -70,7 +74,9 @@ fun LoginContent(
         )
 
         MBTextField(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .semantics { contentDescription = "Password Input" }
+                .padding(16.dp),
             text = state.password,
             onTextValueUpdated = onPasswordUpdated,
             labelText = ResourceString(R.string.password),
@@ -84,7 +90,9 @@ fun LoginContent(
         if (state.hasError) {
             Text(
                 text = state.errorMessage.resolve(),
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier
+                    .semantics {contentDescription = "Login Error Message"}
+                    .padding(16.dp),
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
