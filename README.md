@@ -1,5 +1,17 @@
 # Moneybox Technical Task
 
+## Comments
+Here is the repo for my MoneyBox technical task. 
+The app uses a single activity with a combination of fragments, Jetpack Compose and Jetpack navigation, I have completed the task in this way as I believe that most modern Android projects, that aren't greenfield projects but have adopted compose, are being built this way and I wanted to showcase my ability in building apps this way.
+I chose MVVM with clean architecture and SOLID principles for my architecture, with interactor classes forming the domain layer and repositories that communicate with the API for my data layer.
+The app uses coroutines for asynchronous tasks and kotlin flows to pass data from the viewModel to the UI layer.
+
+Known improvements:
+- Rather than log the user in every time, using the AuthTokenRepository we could instead check if the user has a token, if they do then skip past the login screen and just go straight to showing the plan value screen
+- Add an auth token interceptor to the NetworkingClient so we can auth the users requests when we have a token, without having to pass it directly to the API call
+- Use a DI framework such as Hilt or Koin, I opted against using a framework given the app was so small, but using SOLID principles within this codebase will mean that adding a framework in future will be really easy should we decide to add more to the task
+
+
 ## The Brief…
 Allow a user to login to their moneybox account and display their total plan value.
 
