@@ -11,6 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.moneybox.minimb.R
@@ -70,7 +72,9 @@ private fun TotalPlanValueSuccessContent(
     Text(
         text = state.planValue.resolve(),
         style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier.padding(top = 16.dp),
+        modifier = Modifier
+            .semantics { contentDescription = "Plan Value Text" }
+            .padding(top = 16.dp),
         color = MaterialTheme.colorScheme.onSurface
     )
 }
@@ -86,7 +90,9 @@ private fun TotalPlanValueFailureContent(
     )
 
     MBButton(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier
+            .semantics { contentDescription = "Retry Button" }
+            .padding(16.dp),
         ctaState = CtaState.Enabled(ResourceString(R.string.retry)),
         onClick = onRetry
     )
