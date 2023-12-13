@@ -14,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.moneybox.minimb.R
+import com.moneybox.minimb.data.networking.RequestStatus
 import com.moneybox.minimb.ui.common.MBButton
 import com.moneybox.minimb.ui.common.MBTextField
 import com.moneybox.minimb.ui.common.ResourceString
@@ -93,4 +95,21 @@ fun LoginContent(
             onClick = onLoginClicked
         )
     }
+}
+
+@Composable
+@Preview
+private fun PreviewLoginContent() {
+    LoginContent(
+        state = LoginUiState(
+            requestStatus = RequestStatus.DEFAULT,
+            email = "michael@test.com",
+            password = "Password",
+            emailError = false,
+            passwordError = false
+        ),
+        onEmailUpdated = {},
+        onPasswordUpdated = {},
+        onLoginClicked = {}
+    )
 }

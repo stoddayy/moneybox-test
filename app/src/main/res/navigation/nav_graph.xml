@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/planValueFragment"
-        android:name="com.moneybox.minimb.ui.planvalue.PlanValueFragment" />
+        android:name="com.moneybox.minimb.ui.planvalue.presentation.PlanValueFragment" />
 
 
 </navigation>
