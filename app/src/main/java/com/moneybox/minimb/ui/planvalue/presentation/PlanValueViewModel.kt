@@ -14,11 +14,9 @@ import com.moneybox.minimb.extensions.doOnFailure
 import com.moneybox.minimb.extensions.doOnSuccess
 import com.moneybox.minimb.ui.common.EmptyString
 import com.moneybox.minimb.ui.common.TextProperty
-import com.moneybox.minimb.ui.login.presentation.LoginUiState
 import com.moneybox.minimb.ui.planvalue.data.RemotePlanValueRepository
 import com.moneybox.minimb.ui.planvalue.domain.PlanValueInteractor
 import com.moneybox.minimb.ui.planvalue.domain.RemotePlanValueInteractor
-import com.moneybox.minimb.ui.planvalue.domain.UiPlanValue
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
