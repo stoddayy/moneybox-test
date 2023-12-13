@@ -12,6 +12,7 @@ Known improvements:
 - Use a DI framework such as Hilt or Koin, I opted against using a framework given the app was so small, but using SOLID principles within this codebase will mean that adding a framework in future will be really easy should we decide to add more to the task
 - Add some more validation around the password rules 
 - UI improvements
+- As the project grows in size we may also wish modularise it in to gradle library modules, I made the choice to package the UI by feature in order to make this easier in future
 
 
 ## The Brief…
