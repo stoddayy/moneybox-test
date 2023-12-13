@@ -10,7 +10,9 @@
 
         <action
             android:id="@+id/toPlanValue"
-            app:destination="@id/planValueFragment" />
+            app:destination="@id/planValueFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
