@@ -11,12 +11,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.moneybox.minimb.R
 import com.moneybox.minimb.data.networking.RequestStatus
 import com.moneybox.minimb.ui.common.CtaState
 import com.moneybox.minimb.ui.common.LoadingSpinner
 import com.moneybox.minimb.ui.common.MBButton
+import com.moneybox.minimb.ui.common.RawString
 import com.moneybox.minimb.ui.common.ResourceString
 import com.moneybox.minimb.ui.common.resolve
 import com.moneybox.minimb.ui.theme.MoneyBoxTestTheme
@@ -87,5 +89,17 @@ private fun TotalPlanValueFailureContent(
         modifier = Modifier.padding(16.dp),
         ctaState = CtaState.Enabled(ResourceString(R.string.retry)),
         onClick = onRetry
+    )
+}
+
+@Composable
+@Preview
+private fun PreviewPlanValueContent() {
+    PlanValueContent(
+        state = PlanValueUiState(
+            requestStatus = RequestStatus.SUCCESS,
+            planValue = RawString("£1,000.45")
+        ),
+        onRetry = {}
     )
 }
