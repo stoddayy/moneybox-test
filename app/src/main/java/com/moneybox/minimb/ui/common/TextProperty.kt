@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import kotlinx.parcelize.Parcelize
 
 interface TextProperty {
     fun resolve(context: Context): CharSequence
@@ -11,6 +12,10 @@ interface TextProperty {
 
 data class ResourceString(@StringRes val stringRes: Int) : TextProperty {
     override fun resolve(context: Context): CharSequence = context.getString(stringRes)
+}
+
+data class RawString(val string: String) : TextProperty {
+    override fun resolve(context: Context): CharSequence = string
 }
 
 object EmptyString : TextProperty {
